@@ -137,7 +137,7 @@ class UserService {
     fun sendEmail(recipientEmail: String, link: String) {
         val message: MimeMessage = mailSender.createMimeMessage()
         val helper = MimeMessageHelper(message)
-        helper.setFrom("jvck.ouk@gmail.com", "Shopme Support")
+        helper.setFrom("pda.upce@gmail.com", "Shopme Support")
         helper.setTo(recipientEmail)
         val subject = "Here's the link to reset your password"
         val content = ("<p>Hello,</p>"
