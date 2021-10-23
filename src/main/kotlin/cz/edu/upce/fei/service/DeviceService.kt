@@ -20,7 +20,7 @@ class DeviceService(
         return deviceRepository.save(deviceDto.toModel { userService.findById(deviceDto.userId) }).toDto()
     }
 
-    fun findById(userId: Long): Device? {
-        return deviceRepository.findById(userId).orElse(null)
+    fun findById(deviceId: Long): Device? {
+        return deviceRepository.findById(deviceId).orElse(null)
     }
 }

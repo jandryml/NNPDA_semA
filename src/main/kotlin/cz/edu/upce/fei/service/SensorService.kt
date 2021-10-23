@@ -1,6 +1,8 @@
 package cz.edu.upce.fei.service
 
 import cz.edu.upce.fei.dto.SensorDto
+import cz.edu.upce.fei.model.Device
+import cz.edu.upce.fei.model.Sensor
 import cz.edu.upce.fei.repository.SensorRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -17,5 +19,9 @@ class SensorService(
 
     fun save(sensorDto: SensorDto): SensorDto {
         return sensorRepository.save(sensorDto.toModel { deviceService.findById(sensorDto.deviceId) }).toDto()
+    }
+
+    fun findById(sensorId: Long): Sensor? {
+        return sensorRepository.findById(sensorId).orElse(null)
     }
 }

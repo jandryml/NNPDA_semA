@@ -98,9 +98,9 @@ class UserService {
     }
 
     fun sendResetCode(userDto: UserDto): ResponseDto {
-        val user = userRepository.findByUsername(userDto.username).orElse(null)
+        val user = userRepository.findByEmail(userDto.email).orElse(null)
         return if (user == null) {
-            ResponseDto("Error: Username doesn't exist!")
+            ResponseDto("Error: User with email '${userDto.email}' doesn't exist!")
         } else {
             //send email
             val token = RandomString.make(30)
@@ -137,7 +137,7 @@ class UserService {
     fun sendEmail(recipientEmail: String, link: String) {
         val message: MimeMessage = mailSender.createMimeMessage()
         val helper = MimeMessageHelper(message)
-        helper.setFrom("pda.upce@gmail.com", "Shopme Support")
+        helper.setFrom("pda.upce@gmail.com", "NNPDA support")
         helper.setTo(recipientEmail)
         val subject = "Here's the link to reset your password"
         val content = ("<p>Hello,</p>"
