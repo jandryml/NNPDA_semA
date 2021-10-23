@@ -1,1 +1,1 @@
-rootProject.name = "NNPDA_semA"
+rootProject.name = "NNPDA_server"
