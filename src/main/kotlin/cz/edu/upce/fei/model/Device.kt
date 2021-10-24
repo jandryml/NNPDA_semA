@@ -14,5 +14,5 @@ class Device(
     var user: User? = null,
     var config: String = ""
 ) {
-    fun toDto() = DeviceDto(id, name, user?.id ?: Long.MIN_VALUE)
+    fun toDto() = DeviceDto(id, name, user?.id ?: Long.MIN_VALUE, config)
 }

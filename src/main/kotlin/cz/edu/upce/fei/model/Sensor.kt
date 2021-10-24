@@ -17,6 +17,6 @@ class Sensor(
     var dataType: SensorDataType = SensorDataType(name = "DEFAULT"),
 ) {
     fun toDto(): SensorDto {
-        return SensorDto(id, name, device?.id ?: Long.MIN_VALUE, device?.name ?: "")
+        return SensorDto(id, name, dataType.name, device?.id ?: Long.MIN_VALUE, device?.name ?: "")
     }
 }

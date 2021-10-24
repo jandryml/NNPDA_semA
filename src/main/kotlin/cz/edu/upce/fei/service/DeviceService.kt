@@ -23,13 +23,4 @@ class DeviceService(
     fun findById(deviceId: Long): Device? {
         return deviceRepository.findById(deviceId).orElse(null)
     }
-
-    fun getConfigFile(deviceId: Long): String {
-
-    }
-
-    fun generateConfigFile(deviceId: Long): String {
-
-    }
-
 }
