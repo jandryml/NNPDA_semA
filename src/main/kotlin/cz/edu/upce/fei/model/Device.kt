@@ -11,7 +11,8 @@ class Device(
     var name: String = "",
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
-    val user: User? = null
+    var user: User? = null,
+    var config: String = ""
 ) {
     fun toDto() = DeviceDto(id, name, user?.id ?: Long.MIN_VALUE)
 }
