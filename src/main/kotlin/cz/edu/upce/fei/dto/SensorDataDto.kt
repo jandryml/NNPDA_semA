@@ -13,8 +13,8 @@ class SensorDataDto(
     var createdOn: String,
     var updatedOn: String = ""
 ) {
-    fun toModel(getSensor: (id: Long) -> Sensor?) =
-        SensorData(id, SensorDataType.valueOf(dataType), value, getSensor(sensorId), dateFormat.parse(createdOn))
+    fun toModel(getDataType: (name: String) -> SensorDataType, getSensor: (id: Long) -> Sensor?) =
+        SensorData(id, getDataType(dataType), value, getSensor(sensorId), dateFormat.parse(createdOn))
 
     companion object {
         val dateFormat = SimpleDateFormat("MM-dd-yyyy HH:mm:ss.SSS")

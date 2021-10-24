@@ -9,7 +9,8 @@ import java.util.*
 @Service
 class SensorDataService(
     @Autowired val sensorDataRepository: SensorDataRepository,
-    @Autowired val sensorService: SensorService
+    @Autowired val sensorService: SensorService,
+    @Autowired val sensorDataTypeService: SensorDataTypeService
 ) {
 
     fun listFiltered(sensorId: Long): Iterable<SensorDataDto> {
@@ -17,7 +18,9 @@ class SensorDataService(
     }
 
     fun save(sensorDataDto: SensorDataDto): SensorDataDto {
-        return sensorDataRepository.save(sensorDataDto.toModel { sensorService.findById(sensorDataDto.sensorId) }
+        return sensorDataRepository.save(sensorDataDto.toModel(
+            { sensorDataTypeService.findOrSave(sensorDataDto.dataType) },
+            { sensorService.findById(sensorDataDto.sensorId) })
             .apply { updatedOn = Date() })
             .toDto()
     }

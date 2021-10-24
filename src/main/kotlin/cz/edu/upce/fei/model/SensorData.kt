@@ -9,7 +9,9 @@ class SensorData(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = Long.MIN_VALUE,
-    var dataType: SensorDataType = SensorDataType.OTHER,
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "data_type_id")
+    var dataType: SensorDataType = SensorDataType(name = "DEFAULT"),
     var value: String = "",
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "sensor_id")
