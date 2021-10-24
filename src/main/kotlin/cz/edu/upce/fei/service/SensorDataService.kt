@@ -4,6 +4,7 @@ import cz.edu.upce.fei.dto.SensorDataDto
 import cz.edu.upce.fei.repository.SensorDataRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class SensorDataService(
@@ -16,7 +17,8 @@ class SensorDataService(
     }
 
     fun save(sensorDataDto: SensorDataDto): SensorDataDto {
-        return sensorDataRepository.save(sensorDataDto.toModel { sensorService.findById(sensorDataDto.sensorId) })
+        return sensorDataRepository.save(sensorDataDto.toModel { sensorService.findById(sensorDataDto.sensorId) }
+            .apply { updatedOn = Date() })
             .toDto()
     }
 }
