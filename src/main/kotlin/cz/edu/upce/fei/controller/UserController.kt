@@ -5,6 +5,7 @@ import cz.edu.upce.fei.dto.ResponseDto
 import cz.edu.upce.fei.dto.UserDto
 import cz.edu.upce.fei.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpHeaders
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
@@ -17,7 +18,10 @@ class UserController(
 
     @PostMapping("/login")
     fun login(@RequestBody userDto: UserDto): ResponseEntity<JwtResponseDto> {
-        return ResponseEntity.ok(userService.login(userDto))
+        val jwtResponse = userService.login(userDto)
+        return ResponseEntity.ok()
+            .headers(HttpHeaders().apply { set("authorization", "Bearer ${jwtResponse.accessToken}") })
+            .body(jwtResponse)
     }
 
     @PostMapping("/register")
@@ -31,7 +35,10 @@ class UserController(
     }
 
     @PostMapping("/reset-password")
-    fun resetPassword(@RequestBody newPassword: String, @RequestParam(name = "resetToken") resetToken: String): ResponseEntity<ResponseDto> {
+    fun resetPassword(
+        @RequestBody newPassword: String,
+        @RequestParam(name = "resetToken") resetToken: String
+    ): ResponseEntity<ResponseDto> {
         return ResponseEntity.ok(userService.resetPassword(resetToken, newPassword))
     }
 

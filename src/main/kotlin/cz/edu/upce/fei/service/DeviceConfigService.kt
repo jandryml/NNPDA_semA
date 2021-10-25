@@ -43,14 +43,16 @@ class DeviceConfigService(
 
     private fun generateYamlStructure(it: Device, sensorList: Iterable<SensorDto>) =
         mapOf(
-            "serverUrl" to serverUrl,
-            "device" to mapOf("id" to it.id, "name" to it.name),
-            "sensors" to sensorList.map { sensor ->
-                mapOf(
-                    "id" to sensor.id,
-                    "name" to sensor.name,
-                    "dataType" to sensor.dataType
-                )
-            }
+            "config" to mapOf(
+                "serverUrl" to serverUrl,
+                "device" to mapOf("id" to it.id, "name" to it.name),
+                "sensors" to sensorList.map { sensor ->
+                    mapOf(
+                        "id" to sensor.id,
+                        "name" to sensor.name,
+                        "dataType" to sensor.dataType
+                    )
+                }
+            )
         )
 }
