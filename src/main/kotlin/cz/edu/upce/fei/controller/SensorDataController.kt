@@ -29,6 +29,9 @@ class SensorDataController(
     @PostMapping
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
     fun saveSensorData(@RequestBody sensorDataDto: SensorDataDto): SensorDataDto {
+        //TODO remove
+        println(sensorDataDto)
+
         return sensorDataService.save(sensorDataDto)
     }
 }
