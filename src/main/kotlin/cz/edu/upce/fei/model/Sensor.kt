@@ -11,9 +11,12 @@ class Sensor(
     var name: String = "",
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "device_id")
-    val device: Device? = null
+    val device: Device? = null,
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "data_type_id")
+    var dataType: SensorDataType = SensorDataType(name = "DEFAULT"),
 ) {
     fun toDto(): SensorDto {
-        return SensorDto(id, name, device?.id ?: Long.MIN_VALUE, device?.name ?: "")
+        return SensorDto(id, name, dataType.name, device?.id ?: Long.MIN_VALUE, device?.name ?: "")
     }
 }
