@@ -12,7 +12,7 @@ class SensorData(
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "data_type_id")
     var dataType: SensorDataType = SensorDataType(name = "DEFAULT"),
-    var value: String = "",
+    var value: Long = 0,
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "sensor_id")
     var sensor: Sensor? = null,

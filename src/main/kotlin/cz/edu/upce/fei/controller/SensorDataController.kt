@@ -3,12 +3,14 @@ package cz.edu.upce.fei.controller
 import cz.edu.upce.fei.dto.SensorDataDto
 import cz.edu.upce.fei.service.SensorDataService
 import cz.edu.upce.fei.service.SensorDataTypeService
+import io.swagger.annotations.Api
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/sensor-data")
+@Api( tags = ["Sensor data"])
 class SensorDataController(
     @Autowired val sensorDataService: SensorDataService,
     @Autowired val sensorDataTypeService: SensorDataTypeService

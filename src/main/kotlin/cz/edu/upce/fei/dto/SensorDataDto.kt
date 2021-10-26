@@ -9,7 +9,7 @@ import java.util.*
 data class SensorDataDto(
     var id: Long = Long.MIN_VALUE,
     var dataType: String,
-    var value: String,
+    var value: Long,
     var sensorId: Long = Long.MIN_VALUE,
     var createdOn: String,
     var updatedOn: String = ""

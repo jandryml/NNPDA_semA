@@ -2,12 +2,14 @@ package cz.edu.upce.fei.controller
 
 import cz.edu.upce.fei.dto.SensorDto
 import cz.edu.upce.fei.service.SensorService
+import io.swagger.annotations.Api
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/sensor")
+@Api( tags = ["Sensor"])
 class SensorController(
     @Autowired val sensorService: SensorService
 ) {

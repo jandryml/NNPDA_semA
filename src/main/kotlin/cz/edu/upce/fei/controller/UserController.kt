@@ -4,6 +4,7 @@ import cz.edu.upce.fei.dto.JwtResponseDto
 import cz.edu.upce.fei.dto.ResponseDto
 import cz.edu.upce.fei.dto.UserDto
 import cz.edu.upce.fei.service.UserService
+import io.swagger.annotations.Api
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpHeaders
 import org.springframework.http.ResponseEntity
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/user")
+@Api( tags = ["User"])
 class UserController(
     @Autowired val userService: UserService
 ) {
